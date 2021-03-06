@@ -23,6 +23,8 @@ namespace RayTracerChallenge
         public PPMCreater() { }
 
         //this method writes a canvas to PPM image file
+        //for extreme simplicity what I have done is I write one pixel to an image at a time
+        //this is not optimised but easy to understand to debug the image
         public static void PPMCreaterImageFile(Canvas canvas, int maxValue)
         {
             string header = $"P3\n{canvas.width} {canvas.height}\n{maxValue}\n";
@@ -52,7 +54,6 @@ namespace RayTracerChallenge
             //if it exceeds maxValue, simply return maxValue
             if(chroma >= maxValue)
             {
-
                 return 255;
             }    
 
@@ -65,7 +66,9 @@ namespace RayTracerChallenge
             //simply return whatever value it is
             else
             {
-                return (int)chroma;
+                //upscale to [0,255] range and return
+                float colour = chroma * 255;
+                return (int)(colour);
             }
         }
 

@@ -35,7 +35,6 @@ namespace RayTracerChallenge
         //at that point we set the colour value from black to colour we want
         public void CanvasWritePixel(int xPosition, int yPosition, Colour c)
         {
-
             //placing check to ensure position are within the canvas itself
             if((xPosition >= 0 && xPosition < width) && (yPosition >= 0 && yPosition < height))
             {
