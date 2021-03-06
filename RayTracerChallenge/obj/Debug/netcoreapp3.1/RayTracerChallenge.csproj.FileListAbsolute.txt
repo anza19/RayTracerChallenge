@@ -1,0 +1,13 @@
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\bin\Debug\netcoreapp3.1\RayTracerChallenge.exe
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\bin\Debug\netcoreapp3.1\RayTracerChallenge.deps.json
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\bin\Debug\netcoreapp3.1\RayTracerChallenge.runtimeconfig.json
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\bin\Debug\netcoreapp3.1\RayTracerChallenge.runtimeconfig.dev.json
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\bin\Debug\netcoreapp3.1\RayTracerChallenge.dll
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\bin\Debug\netcoreapp3.1\RayTracerChallenge.pdb
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\obj\Debug\netcoreapp3.1\RayTracerChallenge.csprojAssemblyReference.cache
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\obj\Debug\netcoreapp3.1\RayTracerChallenge.AssemblyInfoInputs.cache
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\obj\Debug\netcoreapp3.1\RayTracerChallenge.AssemblyInfo.cs
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\obj\Debug\netcoreapp3.1\RayTracerChallenge.csproj.CoreCompileInputs.cache
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\obj\Debug\netcoreapp3.1\RayTracerChallenge.dll
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\obj\Debug\netcoreapp3.1\RayTracerChallenge.pdb
+C:\Users\p1252c6\source\repos\RayTracerChallenge\RayTracerChallenge\obj\Debug\netcoreapp3.1\RayTracerChallenge.genruntimeconfig.cache
