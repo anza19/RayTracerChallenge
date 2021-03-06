@@ -6,10 +6,10 @@ namespace RayTracerChallenge
     {
         static void Main(string[] args)
         {
-            Vector v1 = new Vector(1, 2, 3);
-            Point p1 = new Point(1, 2, 3);
+            Colour c1 = new Colour(1, 0.2f, 0.4f);
+            Colour c2 = new Colour(0.9f, 1, 0.1f);
 
-            Projectile proj = new Projectile(p1, v1);
+            Colour hadamardProd = c1.ColourMultiplication(c1, c2);
         }
     }
 }
