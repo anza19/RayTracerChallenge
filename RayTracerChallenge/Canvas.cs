@@ -8,7 +8,7 @@ namespace RayTracerChallenge
     {
         public int width;
         public int height;
-        public Colour[,] canvas;
+        public Colour[,] pixels;
         public Canvas() { }
         public Canvas(int width, int height)
         {
@@ -20,12 +20,12 @@ namespace RayTracerChallenge
         //we create a black canvas
         public void CanvasCreate(int width, int height)
         {
-            canvas = new Colour[width,height];
+            pixels = new Colour[width,height];
             for(int i = 0; i < width; i++)
             {
                 for(int j = 0; j < height; j++)
                 {
-                    canvas[i, j] = new Colour(0.0f, 0.0f, 0.0f);
+                    pixels[i, j] = new Colour(0.0f, 0.0f, 0.0f);
                 }
             }
         }
@@ -39,7 +39,7 @@ namespace RayTracerChallenge
             //placing check to ensure position are within the canvas itself
             if((xPosition >= 0 && xPosition < width) && (yPosition >= 0 && yPosition < height))
             {
-                canvas[xPosition, yPosition] = c;
+                pixels[xPosition, yPosition] = c;
             }
         }
 
