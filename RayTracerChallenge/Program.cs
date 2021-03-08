@@ -23,7 +23,7 @@ namespace RayTracerChallenge
 
             Matrix4 c = new Matrix4(4, 4);
             c.matrix = m1.Matrix4MatrixMultiplication(m1.matrix, m2.matrix);
-            Matrix4.Matrix4MatrixDisplayer(c.matrix);
+            //Matrix4.Matrix4MatrixDisplayer(c.matrix);
 
             Matrix4 m3 = new Matrix4(4, 4);
             m3.matrix[0, 0] = 1;
@@ -51,6 +51,34 @@ namespace RayTracerChallenge
 
             Point p1 = new Point(1, 2, 3, 1);
             Point p2 = p1.PointMatrixMultiplication(p1, m3);
+
+            Matrix4 identity = m3.Matrix4IdentityMatrixCreater(m3);
+            //Matrix4.Matrix4MatrixDisplayer(identity.matrix);
+
+            Matrix4 m4 = new Matrix4(4, 4);
+            m4.matrix[0, 0] = 0;
+            m4.matrix[0, 1] = 9;
+            m4.matrix[0, 2] = 3;
+            m4.matrix[0, 3] = 0;
+
+            m4.matrix[1, 0] = 9;
+            m4.matrix[1, 1] = 8;
+            m4.matrix[1, 2] = 0;
+            m4.matrix[1, 3] = 8;
+
+            m4.matrix[2, 0] = 1;
+            m4.matrix[2, 1] = 8;
+            m4.matrix[2, 2] = 5;
+            m4.matrix[2, 3] = 3;
+
+            m4.matrix[3, 0] = 0;
+            m4.matrix[3, 1] = 0;
+            m4.matrix[3, 2] = 5;
+            m4.matrix[3, 3] = 8;
+
+            Matrix4 tran = new Matrix4(4, 4);
+            tran.matrix = Matrix4.Matrix4MatrixTranspose(m4.matrix);
+            Matrix4.Matrix4MatrixDisplayer(tran.matrix);
         }
     }
 }
