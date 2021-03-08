@@ -119,5 +119,22 @@ namespace RayTracerChallenge
 
             return new Vector(x, y, z, 0.0f);
         }
+
+        //this method multiplies a matrix to a vector
+        public Vector VectorMatrixMultiplication(Vector v, Matrix4 mat4)
+        {
+            float[] temp = new float[4];
+            for(int i = 0; i < 4; i++)
+            {
+                float m = mat4.matrix[i, 0] * v.x + mat4.matrix[i, 1] * v.y + mat4.matrix[i, 2] * v.z + mat4.matrix[i, 3] * v.w;
+                temp[i] = m;
+            }
+
+            float x = temp[0];
+            float y = temp[1];
+            float z = temp[2];
+
+            return new Vector(x, y, z, 0.0f);
+        }
     }
 }

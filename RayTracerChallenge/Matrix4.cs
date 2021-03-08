@@ -19,7 +19,7 @@ namespace RayTracerChallenge
             //creating our n x m matrix
             float[,] tempMatrix = new float[rows, columns];
             matrix = Matrix4MatrixCreater(tempMatrix);
-            Matrix4MatrixDisplayer(matrix);
+            //Matrix4MatrixDisplayer(matrix);
         }
 
         //this method fills a 4x4 method with numbers
@@ -68,7 +68,6 @@ namespace RayTracerChallenge
         //this method compares two matrices to see if they are the same
         public static bool Matrix4MatrixComparison(float[,] matrixA, float[,] matrixB)
         {
-
             //we cycle through both matrices
             //if the entries at ith row and jth column don't match, return false as they are not the same
             for(int i = 0; i < 4; i++)
@@ -84,5 +83,28 @@ namespace RayTracerChallenge
 
             return true;
         }
+
+        //this method multiplies two matrices together
+        //matrix multiplication is achieved by progressively, multiplying each row of the first matrix
+        //to the columns of the second matrix
+        //with each entry at a given row-column being calculated using the following formula
+        //M(i,j) = A(i,0)*B(0,j) + A(i,1)*B(1,j) + A(i,2)*B(2,j) + A(i,3)*B(3,j); i row, j column
+        public float[,] Matrix4MatrixMultiplication(float[,] a, float[,] b)
+        {
+            float[,] matrixM= new float[4, 4];
+
+            for(int i = 0; i < 4; i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    //M(i,j) = A(i,0)*B(0,j) + A(i,1)*B(1,j) + A(i,2)*B(2,j) + A(i,3)*B(3,j); i row, j column
+                    float m = a[i, 0] * b[0, j] + a[i, 1] * b[1, j] + a[i, 2] * b[2, j] + a[i, 3] * b[3, j];
+                    matrixM[i, j] = m;
+                }
+            }
+
+            return matrixM;
+        }
+
     }
 }

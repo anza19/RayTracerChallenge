@@ -64,5 +64,24 @@ namespace RayTracerChallenge
         {
             return new Point(-p.x, -p.y, -p.z);
         }
+
+        //this method multiplies a matrix to a point in order to transform it
+        public Point PointMatrixMultiplication(Point p, Matrix4 mat4)
+        {
+            float[] temp = new float[4];
+            for (int i = 0; i < 4; i++)
+            {
+                float m = mat4.matrix[i, 0] * p.x + mat4.matrix[i, 1] * p.y + mat4.matrix[i, 2] * p.z + mat4.matrix[i, 3] * p.w;
+                temp[i] = m;
+            }
+
+            float x = temp[0];
+            float y = temp[1];
+            float z = temp[2];
+            float w = temp[3];
+
+            return new Point(x, y, z, 1.0f);
+        }
+
     }
 }
