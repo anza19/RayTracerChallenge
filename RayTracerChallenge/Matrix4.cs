@@ -46,7 +46,7 @@ namespace RayTracerChallenge
             matrix[2, 1] = m21;
             matrix[2, 2] = m22;
             matrix[2, 3] = m23;
-            
+
             //then Row #3 aka the fourth and final row
             matrix[3, 0] = m30;
             matrix[3, 1] = m31;
@@ -70,11 +70,11 @@ namespace RayTracerChallenge
         {
             //we cycle through both matrices
             //if the entries at ith row and jth column don't match, return false as they are not the same
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
-                for(int j = 0; j < 4; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    if(matrixA[i,j] != matrixB[i,j])
+                    if (matrixA[i, j] != matrixB[i, j])
                     {
                         return false;
                     }
@@ -91,11 +91,11 @@ namespace RayTracerChallenge
         //M(i,j) = A(i,0)*B(0,j) + A(i,1)*B(1,j) + A(i,2)*B(2,j) + A(i,3)*B(3,j); i row, j column
         public float[,] Matrix4MatrixMultiplication(float[,] a, float[,] b)
         {
-            float[,] matrixM= new float[4, 4];
+            float[,] matrixM = new float[4, 4];
 
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
-                for(int j = 0; j < 4; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     //M(i,j) = A(i,0)*B(0,j) + A(i,1)*B(1,j) + A(i,2)*B(2,j) + A(i,3)*B(3,j); i row, j column
                     float m = a[i, 0] * b[0, j] + a[i, 1] * b[1, j] + a[i, 2] * b[2, j] + a[i, 3] * b[3, j];
@@ -106,5 +106,43 @@ namespace RayTracerChallenge
             return matrixM;
         }
 
+        public Matrix4 Matrix4IdentityMatrixCreater(Matrix4 mat)
+        {
+            //takes a matrix and creates an identity matrix out of it
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (i == j)
+                    {
+                        mat.matrix[i, j] = 1.0f;
+                    }
+                    else
+                    {
+                        mat.matrix[i, j] = 0.0f;
+                    }
+                }
+            }
+
+            return mat;
+        }
+
+        //this method returns the transpose of a matrix
+        //transposing is the process where a row becomes a column, and every column becomes a row
+        public static float[,] Matrix4MatrixTranspose(float[,] matrix)
+        {
+            float[,] transposedMatrix = new float[4, 4];
+            for(int i = 0; i < 4; i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    //every m[i,j] entry becomes m[j,i]
+                    //and vice versa
+                    transposedMatrix[i, j] = matrix[j, i];
+                }
+            }
+
+            return transposedMatrix;
+        }
     }
 }
