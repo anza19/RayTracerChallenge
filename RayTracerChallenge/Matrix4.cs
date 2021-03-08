@@ -64,5 +64,25 @@ namespace RayTracerChallenge
             Console.WriteLine($"{matrix[2, 0]}, {matrix[2, 1]}, {matrix[2, 2]}, {matrix[2, 3]}");
             Console.WriteLine($"{matrix[3, 0]}, {matrix[3, 1]}, {matrix[3, 2]}, {matrix[3, 3]}");
         }
+
+        //this method compares two matrices to see if they are the same
+        public static bool Matrix4MatrixComparison(float[,] matrixA, float[,] matrixB)
+        {
+
+            //we cycle through both matrices
+            //if the entries at ith row and jth column don't match, return false as they are not the same
+            for(int i = 0; i < 4; i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    if(matrixA[i,j] != matrixB[i,j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }
