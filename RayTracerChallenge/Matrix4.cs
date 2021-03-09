@@ -332,5 +332,27 @@ namespace RayTracerChallenge
             return rotationMatrix;
         }
 
+        //shear transformation turns a straight line into a slant
+        //each coordinate moves in proportion to other
+        //so x changes with respect to y and z
+        //x moved in proportion to y
+        //means how much of y to multiply before adding to x
+        public Matrix4 Matrix4MatrixShear(float xY = 0.0f, float xZ = 0.0f, float yX = 0.0f, float yZ = 0.0f, float zX = 0.0f, float zY = 0.0f)
+        {
+            Matrix4 tempyMatrix = new Matrix4(4, 4);
+            Matrix4 shearMatrix = tempyMatrix.Matrix4IdentityMatrixCreater(tempyMatrix);
+
+            shearMatrix.matrix[0, 1] = xY;
+            shearMatrix.matrix[0, 2] = xZ;
+
+            shearMatrix.matrix[1, 0] = yX;
+            shearMatrix.matrix[1, 2] = yZ;
+
+            shearMatrix.matrix[2, 0] = zX;
+            shearMatrix.matrix[2, 1] = zY;
+
+            return shearMatrix;
+        }
+
     }
 }
