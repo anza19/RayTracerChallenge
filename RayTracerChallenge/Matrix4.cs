@@ -144,5 +144,55 @@ namespace RayTracerChallenge
 
             return transposedMatrix;
         }
+
+        //computing matrix inversion using solution found here: https://stackoverflow.com/questions/1148309/inverting-a-4x4-matrix
+        public static float[,] Matrix4MatrixInversion(float[,] m)
+        {
+            float[,] invertedMatrix = new float[4, 4];
+
+            var A2323 = m[2,2] * m[3,3] - m[2,3] * m[3,2];
+            var A1323 = m[2,1] * m[3,3] - m[2,3] * m[3,1];
+            var A1223 = m[2,1] * m[3,2] - m[2,2] * m[3,1];
+            var A0323 = m[2,0] * m[3,3] - m[2,3] * m[3,0];
+            var A0223 = m[2,0] * m[3,2] - m[2,2] * m[3,0];
+            var A0123 = m[2,0] * m[3,1] - m[2,1] * m[3,0];
+            var A2313 = m[1,2] * m[3,3] - m[1,3] * m[3,2];
+            var A1313 = m[1,1] * m[3,3] - m[1,3] * m[3,1];
+            var A1213 = m[1,1] * m[3,2] - m[1,2] * m[3,1];
+            var A2312 = m[1,2] * m[2,3] - m[1,3] * m[2,2];
+            var A1312 = m[1,1] * m[2,3] - m[1,3] * m[2,1];
+            var A1212 = m[1,1] * m[2,2] - m[1,2] * m[2,1];
+            var A0313 = m[1,0] * m[3,3] - m[1,3] * m[3,0];
+            var A0213 = m[1,0] * m[3,2] - m[1,2] * m[3,0];
+            var A0312 = m[1,0] * m[2,3] - m[1,3] * m[2,0];
+            var A0212 = m[1,0] * m[2,2] - m[1,2] * m[2,0];
+            var A0113 = m[1,0] * m[3,1] - m[1,1] * m[3,0];
+            var A0112 = m[1,0] * m[2,1] - m[1,1] * m[2,0];
+
+            var det = m[0,0] * (m[1,1] * A2323 - m[1,2] * A1323 + m[1,3] * A1223)
+                - m[0,1] * (m[1,0] * A2323 - m[1,2] * A0323 + m[1,3] * A0223)
+                + m[0,2] * (m[1,0] * A1323 - m[1,1] * A0323 + m[1,3] * A0123)
+                - m[0,3] * (m[1,0] * A1223 - m[1,1] * A0223 + m[1,2] * A0123);
+            det = 1 / det;
+
+            invertedMatrix[0,0] = det * (m[1,1] * A2323 - m[1,2] * A1323 + m[1,3] * A1223);
+            invertedMatrix[0,1] = det * -(m[0,1] * A2323 - m[0,2] * A1323 + m[0,3] * A1223);
+            invertedMatrix[0,2] = det * (m[0,1] * A2313 - m[0,2] * A1313 + m[0,3] * A1213);
+            invertedMatrix[0,3] = det * -(m[0,1] * A2312 - m[0,2] * A1312 + m[0,3] * A1212);
+            invertedMatrix[1,0] = det * -(m[1,0] * A2323 - m[1,2] * A0323 + m[1,3] * A0223);
+            invertedMatrix[1,1] = det * (m[0,0] * A2323 - m[0,2] * A0323 + m[0,3] * A0223);
+            invertedMatrix[1,2] = det * -(m[0,0] * A2313 - m[0,2] * A0313 + m[0,3] * A0213);
+            invertedMatrix[1,3] = det * (m[0,0] * A2312 - m[0,2] * A0312 + m[0,3] * A0212);
+            invertedMatrix[2,0] = det * (m[1,0] * A1323 - m[1,1] * A0323 + m[1,3] * A0123);
+            invertedMatrix[2,1] = det * -(m[0,0] * A1323 - m[0,1] * A0323 + m[0,3] * A0123);
+            invertedMatrix[2,2] = det * (m[0,0] * A1313 - m[0,1] * A0313 + m[0,3] * A0113);
+            invertedMatrix[2,3] = det * -(m[0,0] * A1312 - m[0,1] * A0312 + m[0,3] * A0112);
+            invertedMatrix[3,0] = det * -(m[1,0] * A1223 - m[1,1] * A0223 + m[1,2] * A0123);
+            invertedMatrix[3,1] = det * (m[0,0] * A1223 - m[0,1] * A0223 + m[0,2] * A0123);
+            invertedMatrix[3,2] = det * -(m[0,0] * A1213 - m[0,1] * A0213 + m[0,2] * A0113);
+            invertedMatrix[3,3] = det * (m[0,0] * A1212 - m[0,1] * A0212 + m[0,2] * A0112);
+
+            return invertedMatrix;
+        }
     }
 }

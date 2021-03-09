@@ -79,6 +79,32 @@ namespace RayTracerChallenge
             Matrix4 tran = new Matrix4(4, 4);
             tran.matrix = Matrix4.Matrix4MatrixTranspose(m4.matrix);
             Matrix4.Matrix4MatrixDisplayer(tran.matrix);
+
+            Matrix4 m5 = new Matrix4(4, 4);
+            m5.matrix[0, 0] = 8;
+            m5.matrix[0, 1] = -5;
+            m5.matrix[0, 2] = 9;
+            m5.matrix[0, 3] = 2;
+
+            m5.matrix[1, 0] = 7;
+            m5.matrix[1, 1] = 5;
+            m5.matrix[1, 2] = 6;
+            m5.matrix[1, 3] = 1;
+
+            m5.matrix[2, 0] = -6;
+            m5.matrix[2, 1] = 0;
+            m5.matrix[2, 2] = 9;
+            m5.matrix[2, 3] = 6;
+
+            m5.matrix[3, 0] = -3;
+            m5.matrix[3, 1] = 0;
+            m5.matrix[3, 2] = -9;
+            m5.matrix[3, 3] = -4;
+
+            Matrix4 inv = new Matrix4(4, 4);
+            inv.matrix = Matrix4.Matrix4MatrixInversion(m5.matrix);
+            Matrix4.Matrix4MatrixDisplayer(inv.matrix);
+
         }
     }
 }
