@@ -194,5 +194,23 @@ namespace RayTracerChallenge
 
             return invertedMatrix;
         }
+
+        //Translation matrix construction
+        //a translation matrix is a matrix that when applied to a point moves it to a new location
+        //when multiplied to a vector does nothing because 0 component of w cancels operation
+        public Matrix4 Matrix4MatrixTranslation(float x, float y, float z)
+        {
+            //to construct a translation matrix we firstly need an identity matrix
+            Matrix4 tempyMatrix = new Matrix4(4, 4);
+            Matrix4 translationMatrix = tempyMatrix.Matrix4IdentityMatrixCreater(tempyMatrix);
+
+            //once we have our identity matrix, we simply change the values of
+            //T03 to x, T13 to y and T23 to z
+            translationMatrix.matrix[0, 3] = x;
+            translationMatrix.matrix[1, 3] = y;
+            translationMatrix.matrix[2, 3] = z;
+
+            return translationMatrix;
+        }
     }
 }
