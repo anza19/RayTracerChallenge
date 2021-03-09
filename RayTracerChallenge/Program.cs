@@ -6,13 +6,11 @@ namespace RayTracerChallenge
     {
         static void Main(string[] args)
         {
-            Matrix4 test = new Matrix4(4, 4);
-            Matrix4 trans = test.Matrix4MatrixTranslation(5, -3, 2);
-            Matrix4.Matrix4MatrixDisplayer(trans.matrix);
 
-            Point p1 = new Point(-3, 4, 5);
-
-            Point newPoist = p1.PointMatrixMultiplication(p1, trans);
+            Matrix4 testTwo = new Matrix4(4, 4);
+            Matrix4 scale = testTwo.Matrix4MatrixScaling(2, 3, 4);
+            Vector v3 = new Vector(-4, 6, 8);
+            Vector v4 = v3.VectorMatrixMultiplication(v3, scale);
 
         }
     }

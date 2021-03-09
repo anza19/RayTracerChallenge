@@ -212,5 +212,24 @@ namespace RayTracerChallenge
 
             return translationMatrix;
         }
+
+        //Scaling matrix construction
+        //a scaling matrix when applied to a point either scales it (multiplies it)
+        //or shrinks it, depending on whether the values are + or -
+        public Matrix4 Matrix4MatrixScaling(float x, float y, float z)
+        {
+            //to construct a scaling matrix, we first need the identity matrix
+            Matrix4 tempyMatrix = new Matrix4(4, 4);
+            Matrix4 scalingMatrix = tempyMatrix.Matrix4IdentityMatrixCreater(tempyMatrix);
+
+            //once we have our identity matrix, we replace the diagonal entries with
+            //x,y and z
+            //S00 -> x, S11 ->y, S22 ->z
+            scalingMatrix.matrix[0, 0] = x;
+            scalingMatrix.matrix[1, 1] = y;
+            scalingMatrix.matrix[2, 2] = z;
+
+            return scalingMatrix;
+        }
     }
 }
