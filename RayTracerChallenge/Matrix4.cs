@@ -231,5 +231,106 @@ namespace RayTracerChallenge
 
             return scalingMatrix;
         }
+        
+        //this method returns the rotation matrix along x axis
+        public Matrix4 Matrix4MatrixRotationXAxis(double angle)
+        {
+            //to construct the rotation matrix, we first need the identity matrix
+            Matrix4 tempyMatrix = new Matrix4(4, 4);
+            Matrix4 rotationMatrix = tempyMatrix.Matrix4IdentityMatrixCreater(tempyMatrix);
+
+            //once we have our identity matrix
+            //we replace the following entries
+            //Rx(1,1) with the cosine of the angle of rotation
+            //Rx(1,2) with the sine of the angle of rotation, then * with -1
+            //Rx(2,1) with the sine of the angle of rotation
+            //Rx(2,2) with the cosine of the angle of rotation
+
+            //adding check to ensure cosine 90 is 0 and not some small floating point value
+            if(angle == Math.PI / 2)
+            {
+                rotationMatrix.matrix[1, 1] = 0;
+                rotationMatrix.matrix[1, 2] = (float)Math.Sin(angle) * -1.0f;
+                rotationMatrix.matrix[2, 1] = (float)Math.Sin(angle);
+                rotationMatrix.matrix[2, 2] = 0;
+            }
+
+            else
+            {
+                rotationMatrix.matrix[1, 1] = (float)Math.Cos(angle);
+                rotationMatrix.matrix[1, 2] = (float)Math.Sin(angle) * -1.0f;
+                rotationMatrix.matrix[2, 1] = (float)Math.Sin(angle);
+                rotationMatrix.matrix[2, 2] = (float)Math.Cos(angle);
+            }
+
+            return rotationMatrix;
+        }
+
+        //this method returns the rotation matrix along y axis
+        public Matrix4 Matrix4MatrixRotationYAxis(double angle)
+        {
+            //to construct the rotation matrix, we first need the identity matrix
+            Matrix4 tempyMatrix = new Matrix4(4, 4);
+            Matrix4 rotationMatrix = tempyMatrix.Matrix4IdentityMatrixCreater(tempyMatrix);
+
+            //once we have our identity matrix
+            //we replace the following entries
+            //Ry(0,0) with the cosine of the angle of rotation
+            //Ry(0,2) with the sine of the angle of rotation, then * with -1
+            //Ry(2,0) with the sine of the angle of rotation
+            //Ry(2,2) with the cosine of the angle of rotation
+            //checking if angle is 90 to avoid floating point number and setting to 0
+            if (angle == Math.PI / 2)
+            {
+                rotationMatrix.matrix[0, 0] = 0;
+                rotationMatrix.matrix[0, 2] = (float)Math.Sin(angle);
+                rotationMatrix.matrix[2, 0] = (float)Math.Sin(angle) * -1.0f;
+                rotationMatrix.matrix[2, 2] = 0;
+            }
+
+            else
+            {
+                rotationMatrix.matrix[0, 0] = (float)Math.Cos(angle);
+                rotationMatrix.matrix[0, 2] = (float)Math.Sin(angle);
+                rotationMatrix.matrix[2, 0] = (float)Math.Sin(angle) * -1.0f;
+                rotationMatrix.matrix[2, 2] = (float)Math.Cos(angle);
+            }
+
+            return rotationMatrix;
+        }
+
+        //this method returns the rotation matrix along z axis
+        public Matrix4 Matrix4MatrixRotationZAxis(double angle)
+        {
+            //to construct the rotation matrix, we first need the identity matrix
+            Matrix4 tempyMatrix = new Matrix4(4, 4);
+            Matrix4 rotationMatrix = tempyMatrix.Matrix4IdentityMatrixCreater(tempyMatrix);
+
+            //once we have our identity matrix
+            //we replace the following entries
+            //Rz(0,0) with the cosine of the angle of rotation
+            //Rz(0,1) with the sine of the angle of rotation, then * with -1
+            //Rz(1,0) with the sine of the angle of rotation
+            //Rz(1,1) with the cosine of the angle of rotation
+            //checking if angle is 90 to avoid floating point number and setting to 0
+            if (angle == Math.PI / 2)
+            {
+                rotationMatrix.matrix[0, 0] = 0;
+                rotationMatrix.matrix[0, 1] = (float)Math.Sin(angle) * -1.0f;
+                rotationMatrix.matrix[1, 0] = (float)Math.Sin(angle);
+                rotationMatrix.matrix[1, 1] = 0;
+            }
+
+            else
+            {
+                rotationMatrix.matrix[0, 0] = (float)Math.Cos(angle);
+                rotationMatrix.matrix[0, 1] = (float)Math.Sin(angle) * -1.0f;
+                rotationMatrix.matrix[1, 0] = (float)Math.Sin(angle);
+                rotationMatrix.matrix[1, 1] = (float)Math.Cos(angle);
+            }
+
+            return rotationMatrix;
+        }
+
     }
 }

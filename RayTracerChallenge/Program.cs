@@ -7,11 +7,11 @@ namespace RayTracerChallenge
         static void Main(string[] args)
         {
 
-            Matrix4 testTwo = new Matrix4(4, 4);
-            Matrix4 scale = testTwo.Matrix4MatrixScaling(2, 3, 4);
-            Vector v3 = new Vector(-4, 6, 8);
-            Vector v4 = v3.VectorMatrixMultiplication(v3, scale);
+            Matrix4 m2 = new Matrix4(4, 4);
+            Matrix4 rotatZ = m2.Matrix4MatrixRotationZAxis(Math.PI / 4);
+            Point p3 = new Point(0, 1, 0);
 
+            Point p4 = p3.PointMatrixMultiplication(p3, rotatZ);
         }
     }
 }
