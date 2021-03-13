@@ -12,9 +12,9 @@ namespace RayTracerChallenge
             Sphere sp = new Sphere();
             Ray r = new Ray(new Point(0, 0, 0), new Vector(0, 0, 1));
 
-            float[] intersection = r.RaySphereIntersection(r, sp);
+            /*float[] intersection = r.RaySphereIntersection(r, sp);
             Console.WriteLine(intersection[0]);
-            Console.WriteLine(intersection[1]);
+            Console.WriteLine(intersection[1]);*/
         }
     }
 }

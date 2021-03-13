@@ -11,7 +11,6 @@ namespace RayTracerChallenge
         public int radius;
         public static int sphereId = 0;
 
-
         //our sphere is simplified by being centered at the origin and having unit length
         public Sphere() 
         {
