@@ -31,7 +31,10 @@ namespace RayTracerChallenge
             return p;
         }
 
-        public float[] RaySphereIntersection(Ray r, Sphere s)
+        //this method is used to return the collection of t values
+        //which when added to a ray's origin which represent points along the
+        //ray where an intersection took place
+        public List<Intersection> RaySphereIntersection(Ray r, Sphere s)
         {
             Vector sphereToRay = r.origin.PointPointSubtraction(r.origin, s.origin);
             float a = r.direction.VectorDotProduct(r.direction, r.direction);
@@ -51,11 +54,20 @@ namespace RayTracerChallenge
             float t1 = (-b - discrimnantRoot) / (2 * a);
             float t2 = (-b + discrimnantRoot) / (2 * a);
 
-            if(t1 >= t2)
+            List<Intersection> intersections = new List<Intersection>();
+
+            if (t1 >= t2)
             {
-                return new float[] { t1, t2 };
+                intersections.Add(new Intersection(t1, s));
+                intersections.Add(new Intersection(t2, s));
+                return intersections;
             }
-            return new float[] { t2, t1 };
+            else
+            {
+                intersections.Add(new Intersection(t2, s));
+                intersections.Add(new Intersection(t1, s));
+                return intersections;
+            }
         }
 
     }
