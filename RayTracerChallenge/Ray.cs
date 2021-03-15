@@ -37,10 +37,18 @@ namespace RayTracerChallenge
         //ray where an intersection took place
         public List<Intersection> RaySphereIntersection(Ray r, Sphere s)
         {
-            Vector sphereToRay = r.origin.PointPointSubtraction(r.origin, s.origin);
-            float a = r.direction.VectorDotProduct(r.direction, r.direction);
-            float b = 2 * r.direction.VectorDotProduct(r.direction, sphereToRay);
-            float c = r.direction.VectorDotProduct(sphereToRay, sphereToRay) - 1.0f;
+            //get the inverse of whatever transformation we would apply to the sphere
+            //and apply it to the original ray to get a transformed ray which retains
+            //the same relation to the sphere, as if the sphere itself was transformed
+            //not the ray
+            Matrix4 inverseTransformation = new Matrix4(4, 4);
+            inverseTransformation.matrix = Matrix4.Matrix4MatrixInversion(s.transformation.matrix);
+            Ray transformedRay = r.RayTransformation(r, inverseTransformation);
+
+            Vector sphereToRay = transformedRay.origin.PointPointSubtraction(transformedRay.origin, s.origin);
+            float a = transformedRay.direction.VectorDotProduct(transformedRay.direction, transformedRay.direction);
+            float b = 2 * transformedRay.direction.VectorDotProduct(transformedRay.direction, sphereToRay);
+            float c = transformedRay.direction.VectorDotProduct(sphereToRay, sphereToRay) - 1.0f;
 
             float discrimnant = (b * b) - (4 * a * c);
 
@@ -71,5 +79,18 @@ namespace RayTracerChallenge
             }
         }
 
+        //applies an inverse of the transformation that we want to apply to a sphere
+        //such that our assumption of unit spehere at origin (0,0,0) is maintained
+        public Ray RayTransformation(Ray r, Matrix4 matrix)
+        {
+            //apply matrix transformation to original ray to return a new one
+            Point transformedPosition = r.origin.PointMatrixMultiplication(r.origin, matrix);
+
+            //apply matrix transformation to ray's direction vector to return a new one
+            Vector transformedDirection = r.direction.VectorMatrixMultiplication(r.direction, matrix);
+
+            //return the transformed ray
+            return new Ray(transformedPosition, transformedDirection);
+        }
     }
 }

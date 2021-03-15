@@ -28,7 +28,7 @@ namespace RayTracerChallenge
         //so you can ignore all intersections with negative t values
         public static Intersection Hit(List<Intersection> intersections)
         {
-            if (intersections.Count <= 0)
+            if (intersections == null)
             {
                 Console.WriteLine("no intersection took place");
                 return null;
