@@ -3,16 +3,54 @@ using System.Collections.Generic;
 
 namespace RayTracerChallenge
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Sphere sp = new Sphere();
-            Ray r = new Ray(new Point(0, 0, 0), new Vector(0, 0, 1));
+            Canvas canvas = new Canvas(100, 100);
+            Colour blue = new Colour(1, 1, 0);
+            Sphere shape = new Sphere();
+            Point rayOrigin = new Point(0, 0, -5);
 
-            List<Intersection> intersections = r.RaySphereIntersection(r, sp);
-            Intersection hit = Intersection.Hit(intersections);
-            Console.WriteLine($"{hit.t}, {hit.sphereIntersected.radius}");
+            float wallZ = 10.0f;
+            float wallSize = 7.0f;
+            float pixelSize = wallSize / 100;
+            float halfSize = wallSize / 2;
+
+            for(int i = 0; i < canvas.height; i++)
+            {
+                float worldY = halfSize - (pixelSize * i);
+                for(int j = 0; j < canvas.width; j++)
+                {
+                    float worldX = -halfSize + (pixelSize * j);
+                    Point position = new Point(worldX, worldY, wallZ);
+
+                    Vector direction = position.PointPointSubtraction(position, rayOrigin);
+                    Vector normalized = direction.VectorNormalization(direction);
+
+                    Ray r = new Ray(rayOrigin, normalized);
+                    List<Intersection> intersections = r.RaySphereIntersection(r, shape);
+
+                    if(Intersection.Hit(intersections) != null)
+                    {
+                        Random rnd = new Random();
+                        float red = rnd.Next(0, 2);
+                        Console.WriteLine($"red:{red}");
+                        float g = rnd.Next(0, 2);
+                        Console.WriteLine($"g:{g}");
+                        float b = rnd.Next(0, 2);
+                        Console.WriteLine($"b:{b}");
+                        canvas.CanvasWritePixel(j, i, new Colour(red, g, b));
+                    }
+                    else
+                    {
+                        canvas.CanvasWritePixel(j, i, new Colour(0,0,0));
+                    }
+                }
+
+            }
+
+            PPMCreater.PPMCreaterImageFile(canvas, 255);
         }
     }
 }
