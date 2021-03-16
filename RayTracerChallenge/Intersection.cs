@@ -26,11 +26,12 @@ namespace RayTracerChallenge
         //that is the object from a list of intersections that we can actually see and ultimately render
         //hit will never be behind the ray's origin, since that's effectively behind the camera
         //so you can ignore all intersections with negative t values
+        //this will be the object with smallest non-negative t value
         public static Intersection Hit(List<Intersection> intersections)
         {
             if (intersections == null)
             {
-                Console.WriteLine("no intersection took place");
+                Console.WriteLine("No intersection took place");
                 return null;
             }
 
@@ -46,7 +47,7 @@ namespace RayTracerChallenge
                 return intersections.First();
             }
 
-            //just return the last number
+            //just return the last number --> smallest non-negative number
             else
             {
                 return intersections.Last();
